@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Desktop, Mobile, Content, ContentMob } from "./containers";
+import { Desktop, Mobile } from "./containers";
 import Button from "./button";
 import styled from "styled-components";
 import { BiMenu } from "react-icons/bi";
@@ -120,39 +120,34 @@ const Navbar = () => {
   return (
     <div>
       <Desktop>
-        <Content>
-          <NavItemLeft>
-            <NavLogo>Shortly</NavLogo>
-            <NavLink>Features</NavLink>
-            <NavLink>Pricing</NavLink>
-            <NavLink>Resources</NavLink>
-          </NavItemLeft>
-          <NavItemRight>
-            <NavLink>Login</NavLink>
-            <SignUpBtn>Sign Up</SignUpBtn>
-          </NavItemRight>
-        </Content>
+        <NavItemLeft>
+          <NavLogo>Shortly</NavLogo>
+          <NavLink>Features</NavLink>
+          <NavLink>Pricing</NavLink>
+          <NavLink>Resources</NavLink>
+        </NavItemLeft>
+        <NavItemRight>
+          <NavLink>Login</NavLink>
+          <SignUpBtn>Sign Up</SignUpBtn>
+        </NavItemRight>
       </Desktop>
       <Mobile>
-        <ContentMob>
-          <NavItemLeftMob>
-            <NavLogoMob>Shortly</NavLogoMob>
-          </NavItemLeftMob>
-          <NavItemRightMob>
-            <MenuBtnMob onClick={() => setNav(!showNav)}>
-              <MenuIcon />
-            </MenuBtnMob>
-          </NavItemRightMob>
-
-          <MobileNav showNav={showNav}>
-            <MobNavLink>Features</MobNavLink>
-            <MobNavLink>Pricing</MobNavLink>
-            <MobNavLink>Resources</MobNavLink>
-            <Hr />
-            <MobNavLink>Login</MobNavLink>
-            <MobSignUpBtn>Sign Up</MobSignUpBtn>
-          </MobileNav>
-        </ContentMob>
+        <NavItemLeftMob>
+          <NavLogoMob>Shortly</NavLogoMob>
+        </NavItemLeftMob>
+        <NavItemRightMob>
+          <MenuBtnMob onClick={() => setNav(!showNav)}>
+            <MenuIcon />
+          </MenuBtnMob>
+        </NavItemRightMob>
+        <MobileNav showNav={showNav}>
+          <MobNavLink>Features</MobNavLink>
+          <MobNavLink>Pricing</MobNavLink>
+          <MobNavLink>Resources</MobNavLink>
+          <Hr />
+          <MobNavLink>Login</MobNavLink>
+          <MobSignUpBtn>Sign Up</MobSignUpBtn>
+        </MobileNav>
       </Mobile>
     </div>
   );

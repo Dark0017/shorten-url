@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Desktop, Mobile, Content, ContentMob } from "./containers";
+import { Desktop, Mobile} from "./containers";
 import Button from "./button";
 import { ReactComponent as WorkingImg } from "../assets/working.svg";
 
@@ -79,6 +79,7 @@ const HeroButtonMob = styled(HeroButton)`
 
 const HeroImg = styled(WorkingImg)`
   overflow: visible;
+  width: 100%;
   margin-left: 6rem;
   margin-top: 2rem;
 `;
@@ -95,7 +96,6 @@ const HeroSection = () => {
   return (
     <div>
       <Desktop>
-        <Content>
           <FlexBox>
             <TextSec>
               <HeadText>More than just</HeadText>
@@ -105,23 +105,20 @@ const HeroSection = () => {
               <HeroButton>Get Started</HeroButton>
             </TextSec>
           </FlexBox>
-          <HeroImg />
-        </Content>
+          <HeroImg viewBox="0, 0, 480, 480 " />
       </Desktop>
       <Mobile>
-        <ContentMob>
-          <FlexBoxMob>
-            <HeroImgMob viewBox="0, 0, 480, 480 " />
-            <TextSecMob>
-              <HeadTextMob>More than just</HeadTextMob>
-              <HeadTextMob>shorter links</HeadTextMob>
-              <SubTextMob>Build your brand's recognition and</SubTextMob>
-              <SubTextMob> get detailed insights on how your</SubTextMob>
-              <SubTextMob>links are performing</SubTextMob>
-              <HeroButtonMob>Get Started</HeroButtonMob>
-            </TextSecMob>
-          </FlexBoxMob>
-        </ContentMob>
+        <FlexBoxMob>
+          <HeroImgMob viewBox="0, 0, 480, 480 " />
+          <TextSecMob>
+            <HeadTextMob>More than just</HeadTextMob>
+            <HeadTextMob>shorter links</HeadTextMob>
+            <SubTextMob>Build your brand's recognition and</SubTextMob>
+            <SubTextMob> get detailed insights on how your</SubTextMob>
+            <SubTextMob>links are performing</SubTextMob>
+            <HeroButtonMob>Get Started</HeroButtonMob>
+          </TextSecMob>
+        </FlexBoxMob>
       </Mobile>
     </div>
   );
