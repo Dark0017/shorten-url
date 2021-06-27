@@ -115,6 +115,9 @@ const handleSubmit = async (text) => {
     if (!res) {
       alert("Shortening failed");
     }
+    if (res) {
+      alert("Shortening finished");
+    }
     list.push(res ? [text, res.data.result.short_link] : [text]);
     localStorage.setItem("links", JSON.stringify(list));
   }
