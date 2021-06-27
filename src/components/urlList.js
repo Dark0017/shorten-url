@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import Button from "./button";
 import { Desktop, Mobile } from "./containers";
@@ -90,21 +90,13 @@ const ListItems = (props) => {
   );
 };
 
-const UrlList = () => {
+const UrlList = (props) => {
   let idx = 0;
-  const [savedLinks, setsavedLinks] = useState([]);
-  useEffect(() => {
-    let links = localStorage.getItem("links");
-    links = JSON.parse(links);
-    if (links) {
-      setsavedLinks(links);
-    }
-  }, []);
   return (
     <ListContainer>
       <Desktop>
         <ListView>
-          {savedLinks.map((item) => {
+          {props.list.map((item) => {
             idx++;
             return <ListItems url={item[0]} srtUrl={item[1]} key={idx} />;
           })}

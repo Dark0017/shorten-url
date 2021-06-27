@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import validator from "validator";
 import { Desktop, Mobile } from "./containers";
@@ -6,6 +6,7 @@ import Button from "./button";
 import styled from "styled-components";
 import InputBoxBg from "../assets/bg-shorten-desktop.svg";
 import InputBoxBgMob from "../assets/bg-shorten-mobile.svg";
+import UrlList from "./urlList";
 
 const FlexBox = styled.div`
   position: relative;
@@ -126,6 +127,16 @@ const handleSubmit = async (text) => {
 const InputBox = () => {
   const [inText, setInText] = useState("");
   const [isValid, setIsValid] = useState(true);
+  const [savedLinks, setsavedLinks] = useState([]);
+
+  useEffect(() => {
+    let links = localStorage.getItem("links");
+    links = JSON.parse(links);
+    if (links) {
+      links.reverse();
+      setsavedLinks(links);
+    }
+  }, [isValid, savedLinks]);
 
   return (
     <div>
@@ -139,10 +150,11 @@ const InputBox = () => {
             isValid={isValid}
           ></TextInput>
           <SubmitButton
-            onClick={() => {
+            onClick={async () => {
               if (validator.isURL(inText)) {
-                handleSubmit(inText);
+                await handleSubmit(inText);
                 setIsValid(true);
+                setsavedLinks([]);  //trigger useEffect
               } else {
                 setIsValid(false);
               }
@@ -177,6 +189,7 @@ const InputBox = () => {
           </SubmitButtonMob>
         </FlexBoxMob>{" "}
       </Mobile>
+      <UrlList list={savedLinks} />
     </div>
   );
 };
