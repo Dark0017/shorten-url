@@ -62,8 +62,9 @@ const NavLogoMob = styled(NavLogo)`
 `;
 
 const MenuIcon = styled(BiMenu)`
+  margin-top: 0rem;
+  padding: 0rem;
   font-size: 2rem;
-  margin-top: 0.75rem;
   color: #bfbfbf;
 `;
 
@@ -104,6 +105,16 @@ const MobSignUpBtn = styled(SignUpBtn)`
   margin-bottom: 2rem;
 `;
 
+const MenuBtnMob = styled.button`
+  margin: 0rem;
+  padding: 0rem;
+  margin-top: 0.75rem;
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+  border: none;
+`;
+
 const Navbar = () => {
   const [showNav, setNav] = useState(false);
   return (
@@ -128,9 +139,9 @@ const Navbar = () => {
             <NavLogoMob>Shortly</NavLogoMob>
           </NavItemLeftMob>
           <NavItemRightMob>
-            <a onClick={() => setNav(!showNav)}>
+            <MenuBtnMob onClick={() => setNav(!showNav)}>
               <MenuIcon />
-            </a>
+            </MenuBtnMob>
           </NavItemRightMob>
 
           <MobileNav showNav={showNav}>
