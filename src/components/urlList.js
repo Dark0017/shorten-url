@@ -20,6 +20,18 @@ const LeftUrl = styled.div`
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
   line-height: 4rem;
+  overflow: hidden;
+`;
+
+const LeftUrlMob = styled(LeftUrl)`
+  margin: 0rem;
+  padding-left: 1rem;
+  width: 100%;
+  border-bottom-width: 100%;
+  border-bottom-style: solid;
+  border-bottom-color: #bfbfbf;
+  margin-right: auto;
+  border-width: 1px;
 `;
 
 const RightUrl = styled.div`
@@ -30,15 +42,30 @@ const RightUrl = styled.div`
   color: #2acfcf;
 `;
 
+const RightUrlMob = styled(RightUrl)`
+  margin: 0rem;
+  margin-right: auto;
+  margin-left: 1rem;
+  overflow: hidden;
+`;
+
 const CopyButton = styled(Button)`
   margin: 0rem;
   margin-left: 1rem;
   width: 6rem;
-
   border-radius: 0.5rem;
   cursor: pointer;
 
   background-color: ${(props) => (props.visited ? "#3b3054" : "#2acfcf")};
+`;
+
+const CopyButtonMob = styled(CopyButton)`
+  margin: 0rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  width: auto;
 `;
 
 const ListItem = styled.div`
@@ -50,6 +77,10 @@ const ListItem = styled.div`
   justify-content: space-between;
   margin-left: auto;
   margin-right: auto;
+`;
+
+const ListItemMob = styled(ListItem)`
+  flex-direction: column;
 `;
 
 const ListView = styled.div`
@@ -90,6 +121,25 @@ const ListItems = (props) => {
   );
 };
 
+const ListItemsMob = (props) => {
+  const [didVisit, setdidVisit] = useState(false);
+  return (
+    <ListItemMob>
+      <LeftUrlMob>{props.url}</LeftUrlMob>
+      <RightUrlMob>{props.srtUrl}</RightUrlMob>
+      <CopyButtonMob
+        onClick={() => {
+          copyToClip(props.srtUrl);
+          setdidVisit(true);
+        }}
+        visited={didVisit}
+      >
+        {didVisit ? "Copied" : "Copy"}
+      </CopyButtonMob>
+    </ListItemMob>
+  );
+};
+
 const UrlList = (props) => {
   let idx = 0;
   return (
@@ -102,7 +152,14 @@ const UrlList = (props) => {
           })}
         </ListView>
       </Desktop>
-      <Mobile>I show links but smolr</Mobile>
+      <Mobile>
+        <ListView>
+          {props.list.map((item) => {
+            idx++;
+            return <ListItemsMob url={item[0]} srtUrl={item[1]} key={idx} />;
+          })}
+        </ListView>
+      </Mobile>
     </ListContainer>
   );
 };

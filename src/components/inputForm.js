@@ -128,7 +128,7 @@ const InputBox = () => {
   const [inText, setInText] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [savedLinks, setsavedLinks] = useState([]);
-
+  const [didSubmit, setdidSubmit] = useState(false);
   useEffect(() => {
     let links = localStorage.getItem("links");
     links = JSON.parse(links);
@@ -136,7 +136,7 @@ const InputBox = () => {
       links.reverse();
       setsavedLinks(links);
     }
-  }, [isValid, savedLinks]);
+  }, [didSubmit]);
 
   return (
     <div>
@@ -154,7 +154,7 @@ const InputBox = () => {
               if (validator.isURL(inText)) {
                 await handleSubmit(inText);
                 setIsValid(true);
-                setsavedLinks([]);  //trigger useEffect
+                setdidSubmit(!didSubmit); //trigger useEffect
               } else {
                 setIsValid(false);
               }
