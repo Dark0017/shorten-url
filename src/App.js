@@ -3,6 +3,7 @@ import HeroGetStarted from "./components/heroGetStarted";
 import HeroSection from "./components/heroSection";
 import InputBox from "./components/inputForm";
 import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 const AppDiv = styled.div`
   margin: 0rem;
@@ -17,6 +18,7 @@ function App() {
       <HeroSection />
       <InputBox />
       <HeroGetStarted />
+      <Footer />
     </AppDiv>
   );
 }
