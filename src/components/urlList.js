@@ -1,17 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Button from "./button";
-import { Desktop, Mobile } from "./containers";
+import StatsHeroSection from "./statsHeroSection";
+import { Desktop, Mobile, GrayContainer } from "./containers";
 
-const ListContainer = styled.div`
-  background-color: #bfbfbf;
-  position: absolute;
-  width: 101%;
-  z-index: -1;
-  top: 47.5rem;
-  left: -1rem;
-  padding-top: 7rem;
-  font-family: "Poppins", sans-serif;
+const OuterDiv = styled.div`
+  position: relative;
 `;
 
 const LeftUrl = styled.div`
@@ -96,6 +90,13 @@ const ListView = styled.div`
   }
 `;
 
+const ListViewMob = styled(ListView)`
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  height: 29.4rem;
+`;
+
 const copyToClip = (text) => {
   navigator.clipboard.writeText(text);
 };
@@ -143,7 +144,8 @@ const ListItemsMob = (props) => {
 const UrlList = (props) => {
   let idx = 0;
   return (
-    <ListContainer>
+    <OuterDiv>
+      <GrayContainer />
       <Desktop>
         <ListView>
           {props.list.map((item) => {
@@ -153,14 +155,15 @@ const UrlList = (props) => {
         </ListView>
       </Desktop>
       <Mobile>
-        <ListView>
+        <ListViewMob>
           {props.list.map((item) => {
             idx++;
             return <ListItemsMob url={item[0]} srtUrl={item[1]} key={idx} />;
           })}
-        </ListView>
+        </ListViewMob>
       </Mobile>
-    </ListContainer>
+      <StatsHeroSection />
+    </OuterDiv>
   );
 };
 
